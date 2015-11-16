@@ -1,3 +1,3 @@
-A D3.js bubbles map driven by a time slider.
+# [US Alien Sightings Visualization](http://gabe-terrell.github.io/Alien-Sighting-Visualization/)
 
-http://bl.ocks.org/PBrockmann/230f567762de650953b5
+By Emma Posamentier, Nick Teleky, Gabe Terrell
