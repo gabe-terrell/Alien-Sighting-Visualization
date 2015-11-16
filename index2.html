@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+
+body {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer {
+    color: #888888;
+    font-size: 13px;
+    text-align: right;
+}
+
+#states path {
+  fill: #000000 !important;
+  stroke: #66FF66;
+}
+
+#states:hover{
+  fill: #5D5D5D !important;
+  stroke: #66FF66;
+}
+
+
+circle {
+  fill: red !important;
+  fill-opacity: .6;
+  stroke: #fff;
+}
+
+circle:hover {
+  fill: #66FF66 !important;
+  fill-opacity: 1;
+  stroke: #fff;
+}
+
+    </style>
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+
+<script src="http://d3js.org/d3.v2.js"></script>
+
+</head>
+
+<body>
+
+
+<div id="graph"></div>
+
+<p>
+<label for="year">Year :</label>
+<input type="text" id="year" style="border:0; color:#f6931f; font-weight:bold; " />
+</p>
+<div id="slider" style="width: 1200px;"></div>
+
+<script type="text/javascript">
+
+// Coded by Patrick.Brockmann@lsce.ipsl.fr
+$(document).ready(function() {
+
+$("#slider").slider({
+  value:2015,
+  min: 1971,
+  max: 2020,
+  step: 1,
+  slide: function( event, ui ) {
+    $("#year").val(ui.value);
+    redraw(ui.value.toString());
+  }
+});
+$("#year").val($("#slider").slider("value") );
+
+var w = 1200;
+var h = 500;
+
+var xy = d3.geo.albersUsa()
+          .scale(1000);
+
+var path = d3.geo.path()
+    .projection(xy);
+
+var svg = d3.select("#graph").insert("svg:svg")
+  .attr("width", w)
+        .attr("height", h);
+
+var states = svg.append("svg:g")
+    .attr("id", "states");
+
+var circles = svg.append("svg:g")
+    .attr("id", "circles");
+
+var labels = svg.append("svg:g")
+    .attr("id", "labels");
+
+d3.json("world-countries.json", function(collection) {
+  states.selectAll("path")
+      .data(collection.features)
+    .enter().append("svg:path")
+      .attr("d", path)
+            .on("mouseover", function(d) {
+                d3.select(this).style("fill","#6C0")
+                    .append("svg:title")
+                    .text(d.properties.name);})
+            .on("mouseout", function(d) {
+                d3.select(this).style("fill","#ccc");})
+});
+//http://stackoverflow.com/questions/11386150/lat-lon-positon-on-a-d3-js-map
+// +convert to string to number
+
+var scalefactor=1./50.0 ;
+console.log("before");
+d3.csv("nuforcData2014.csv", function(csv) {
+  circles.selectAll("circle")
+      .data(csv)
+    .enter()
+      .append("svg:circle")
+        .attr("cx", function(d, i) { if(d["year"] <= year.value) {console.log("SHOULD SHOW!!  YEAR= "+d["year"]+" over all year = "+year.value); return xy([+d["geo_longitude"],+d["geo_latitude"]])[0];} else {console.log("SHOULD NOT SHOW!! YEAR= "+d["year"]+" over all year = "+year.value);return xy([+d["geo_longitude"],+d["geo_latitude"]])[0];}  }  )
+        .attr("cy", function(d, i)  { return xy([+d["geo_longitude"],+d["geo_latitude"]])[1];})
+        .attr("r", function(d, i) { if(d["year"] <= year.value) {console.log("SHOULD SHOW!!  YEAR= "+d["year"]+" over all year = "+year.value); return 2;} else {console.log("SHOULD NOT SHOW R!! YEAR= "+d["year"]+" over all year = "+year.value);return 0}  }  )
+        //.attr("title",  function(d) { return d["location"]+": "+d[year]; })
+              .on("mouseover", function(d) {
+                  d3.select(this).style("fill","#FC0");})
+              .on("mouseout", function(d) {
+                  d3.select(this).style("fill","steelblue");});
+  
+  // labels.selectAll("labels")
+  //     .data(csv)
+  //   .enter()
+  //   .append("svg:text")
+  //       .attr("x", function(d, i) { return xy([+d["geo_longitude"],+d["geo_latitude"]])[0]; })
+  //       .attr("y", function(d, i) { return xy([+d["geo_longitude"],+d["geo_latitude"]])[1]; })
+  //       .attr("dy", "0.3em")
+        //.attr("text-anchor", "middle")
+        //.text(function(d) { return d["year"]; });
+console.log("after");
+});
+
+function redraw(year) {
+      circles.selectAll("circle")
+    .transition()
+          .duration(1000).ease("linear")
+        .attr("r", function(d, i) { if(d["year"] <= Number(year)) {console.log("SHOULD SHOW!!  YEAR= "+d["year"]+" over all year = "+Number(year)); return 2;} else {console.log("SHOULD NOT SHOW R!! YEAR= "+d["year"]+" over all year = "+year);return 0}  }  )
+          //.attr("title",  function(d) { return d["location"]+": "+d["year"]; });
+        .attr("fill", "red")
+      labels.selectAll("text")
+          .text(function(d) { return Math.round(d[year]); });
+}
+
+});
+
+</script>
+
+<div class="footer">
+
+</div>
+
+</body>
+
+</html>

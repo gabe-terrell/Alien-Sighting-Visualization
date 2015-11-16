@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>UFO Sightings in the US in 2014</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="css/agency.css" rel="stylesheet">
+
+
+	<link href="css/index.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
+		<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/cbpAnimatedHeader.js"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="js/jqBootstrapValidation.js"></script>
+	<script src="js/contact_me.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="js/agency.js"></script>
+
+ 	<script type="text/javascript">
+ 		var nuforcData2014String;
+ 		var hoverLocation = '';
+
+ 	</script>
+ 	<script src="nuforcData2014String.js"></script>
+
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+    <script src="parsecsv.js"></script>
+
+
+
+	<style type="text/css">
+
+
+.footer {
+	color: #888888;
+	font-size: 13px;
+	text-align: right;
+}
+
+#states path {
+  fill: #000000 !important;
+  stroke: #66FF66;
+}
+
+#states:hover{
+  fill: #5D5D5D !important;
+  stroke: #66FF66;
+}
+
+
+circle {
+  /*fill: red !important;*/
+  fill-opacity: .6;
+  stroke: #fff;
+}
+
+circle:hover {
+  fill: #00FF00 !important;
+  fill-opacity: .9 !important;
+  stroke: #fff;
+}
+
+	</style>
+
+</head>
+
+<body id="page-top" class="index">
+
+
+
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/cbpAnimatedHeader.js"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="js/jqBootstrapValidation.js"></script>
+	<script src="js/contact_me.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="js/agency.js"></script>
+
+	<!-- Header -->
+
+
+</body>
+
+<body>
+
+<div class="modest-padding">
+
+<section id="services">
+<!--     <div class="side-col">
+	<p>TESTING ONE TWO</p>
+
+	</div> -->
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+
+  <script src="http://d3js.org/d3.v2.js"></script>
+  <div id="graph-col">
+	  <div id="graph"></div>
+
+	  <p>
+	  <label for="year" style="color:#00ff00">Date :</label>
+	  <input type="text" id="year" style="border:0; color:#00ff00; font-weight:bold; background:none" readonly="readonly"/>
+	  </p>
+	  <div id="slider" style="width: 900px; height:15px;">
+	  	<div class="monthMarker">JAN</div>
+	  	<div class="monthMarker">FEB</div>
+	  	<div class="monthMarker">MAR</div>
+	  	<div class="monthMarker">APR</div>
+	  	<div class="monthMarker">MAY</div>
+	  	<div class="monthMarker">JUN</div>
+	  	<div class="monthMarker">JUL</div>
+	  	<div class="monthMarker">AUG</div>
+	  	<div class="monthMarker">SEP</div>
+	  	<div class="monthMarker">OCT</div>
+	  	<div class="monthMarker">NOV</div>
+	  	<div class="monthMarker december">DEC</div>
+	  </div>
+  </div>
+	<script type="text/javascript">
+	var allData = formatData();
+
+	var myJSONText = JSON.stringify(allData);
+	// Coded by Patrick.Brockmann@lsce.ipsl.fr
+	var start2014 = new Date(2014, 0, 1).getTime();
+	var end2014 = new Date(2014, 11, 31).getTime();
+	$(document).ready(function() {
+
+	$("#slider").slider({
+	  animate: "fast",
+	  value:start2014, //epoch start of 2014
+	  min: start2014,
+	  max: end2014,
+	  step: 86400,
+	  slide: function( event, ui ) {
+		$("#year").val(ui.value);
+		redraw(ui.value.toString());
+		drawShapesGraph(ui.value.toString());
+		var dateName = new Date(ui.value);
+		$("#year").val(dateName.toDateString());
+	  }
+	});
+var dateName = new Date(start2014);
+dateName = dateName.toDateString();
+$("#year").val(dateName);
+
+//BARGRAPH STUFF
+
+	//These are the things I couldn't quite get to work. getShapesFromSliderDate returns an array of all shapes that
+	//appear before that date, and draw uses that function to (in theory) build the new graph accordingly.
+
+	var getShapesFromSliderDate = function (sliderDate) {
+		var updatedShapes = [];
+		for (var i = 0; i < allData.length; i++) {
+			for (var j = 0; j < allData[i].reports.length; j++) {
+				var shapeAlreadyRecorded = false;
+				var currReport = allData[i].reports[j];
+				var timestamp = new Date(currReport.year, currReport.month - 1, currReport.day - 1).getTime();
+				timestamp = (timestamp);
+				if (timestamp <= sliderDate) {
+					for (var k = 0; k < updatedShapes.length; k++) {
+						if (updatedShapes[k].name == currReport.shape) {
+							updatedShapes[k].count += 1;
+							shapeAlreadyRecorded = true;
+						}
+					}
+					if (!shapeAlreadyRecorded) {
+						var shape = {name: currReport.shape, count: 1};
+						updatedShapes.push(shape);
+					}
+				}
+			}
+		}
+		return updatedShapes;
+
+	};
+
+	var drawShapesGraph = function (sliderDate) {
+		$("#shape-chart").html = "";
+		var shapes = getShapesFromSliderDate(sliderDate);
+		shapes.sort(shapeCountCompare);
+		var graphWidth = 475;
+		var leftMargin = 45,
+			rightMargin = 25;
+
+		var barHeight = 20;
+		var graphHeight = barHeight * shapes.length;
+
+		var barX = d3.scale.linear()
+			.domain([0, 1507]) //HARDCODED FOR MAX - (1503 by Light viewings)
+			.range([0, graphWidth-leftMargin-rightMargin-3]);
+		d3.selectAll("#shape-chart g").remove();
+
+		var barchart = d3.select("#shape-chart")
+			.attr("width", graphWidth)
+			.attr("height", barHeight * shapes.length)
+		   .append("g")
+		   	.attr("transform", "translate(" + leftMargin +","+ rightMargin+")");
+
+
+		var bar = barchart.selectAll("g")
+			.data(shapes)
+		  .enter().append("g")
+		  	.attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+		bar.append("rect")
+			.attr("width", function(d) {return barX(d.count); })
+			.attr("height", barHeight - 1)
+			.attr("transform", "translate(3, 0)")
+				  .on("mouseover", function(d) {
+					  d3.select(this).style("fill","red");
+					  fillDetails(d["location"]);
+					})
+				  .on("mouseout", function(d) {
+				  		
+				  			d3.select(this).style("fill","#00FF00");
+
+					});
+
+		bar.append("text")
+		    .attr("x", function(d) { return barX(d.count)+25; })
+		    .attr("y", barHeight / 2)
+		    .attr("dy", ".35em")
+		    .text(function(d) { return d.count; });
+		bar.append("text")
+			.attr("x", 0)
+			.attr("y", barHeight/2)
+			.attr("dy", ".35em")
+			.text(function(d) {return d.name; });
+	}
+
+	function shapeCountCompare(a, b) {
+		if (a.count < b.count) return 1;
+		if (a.count > b.count) return -1;
+		return 0;
+	}
+
+	function type(d) {
+	  d.value = +d.value; // coerce to number
+	  return d;
+	}
+
+	$("#year").val(($("#slider").slider("value")) );
+
+	var w = "100%";
+	var h = 500;
+
+	var xy = d3.geo.albersUsa()
+			  .scale(1000);
+
+	var path = d3.geo.path()
+		.projection(xy);
+
+	var svg = d3.select("#graph").insert("svg:svg")
+	  .attr("width", w)
+			.attr("height", h);
+
+
+	var states = svg.append("svg:g")
+		.attr("id", "states");
+
+	var circles = svg.append("svg:g")
+		.attr("id", "circles");
+
+	var labels = svg.append("svg:g")
+		.attr("id", "labels");
+
+	var clickedID = "";
+
+	d3.json("world-countries.json", function(collection) {
+	  states.selectAll("path")
+		  .data(collection.features)
+		.enter().append("svg:path")
+		  .attr("d", path)
+				.on("mouseover", function(d) {
+					d3.select(this).style("fill","#6C0")
+						.append("svg:title")
+						.text(d.properties.name);})
+				.on("mouseout", function(d) {
+					d3.select(this).style("fill","#ccc");})
+	});
+	//http://stackoverflow.com/questions/11386150/lat-lon-positon-on-a-d3-js-map
+	// +convert to string to number
+	var bubbleScale = 1;
+	var scalefactor=1./50.0 ;
+
+	  d3.select("#circles").selectAll("circle")
+		  .data(allData)
+		.enter()
+		  .append("svg:circle")
+		  	.attr("fill", function() {
+					  return "red";
+					})
+			.attr("cx", function(d, i) {
+											//d["count"] = 0;
+											for (var j = 0; j < d["reports"].length; j++)
+											{
+												var timestamp = new Date(d["reports"][j]["year"], d["reports"][j]["month"] - 1, d["reports"][j]["day"] - 1).getTime();
+												timestamp = (timestamp);
+												if (timestamp != 1325307600000) {
+												}
+												if(timestamp <= year.value)
+												{
+													d["count"]++;
+												}
+											}
+
+											return xy([+d["reports"][0]["geo_longitude"],+d["reports"][0]["geo_latitude"]])[0];
+										}  )
+			.attr("cy", function(d, i)  { return xy([+d["reports"][0]["geo_longitude"],+d["reports"][0]["geo_latitude"]])[1];})
+			.attr("r", function(d, i) {
+
+
+										for (var j = 0; j < d["reports"].length;j++) {
+											var timestamp = new Date(d["reports"][j]["year"], d["reports"][j]["month"] - 1, d["reports"][j]["day"] - 1).getTime();
+											timestamp = (timestamp);
+
+											if(timestamp <= year.value)
+											{
+
+												return (1+ (bubbleScale*d["count"]));
+											} else {
+
+												return 0;
+											}
+										}
+
+									}  )
+			.attr("title",  function(d) { return d["location"]+": "+d["location"]; })
+			.attr("id", function(d) { return d["location"]; })
+
+				  .on("mouseover", function(d) {
+					  d3.select(this).style("fill","#00FF00");
+					  fillDetails(d["location"]);
+					})
+				  .on("mouseout", function(d) {
+				  		if (clickedID != d["location"]) {
+				  			d3.select(this).style("fill","red");
+
+				  		} else {
+							d3.select(this).style("fill","#00FF00");
+				  		}
+				  		clearDetails();
+
+					})
+				  .on("click", function(d) {
+				  	if (clickedID != "") {
+				  		document.getElementById(clickedID).style.fill = "red";
+				  	}
+  					clickedID = d["location"];
+
+  					d3.event.stopPropagation();
+				});
+
+	function fillDetails(loc) {
+
+		var allDataLength = allData.length;
+
+
+		for (var i = 0; i < allDataLength; i++) {
+			if (allData[i]["location"] == loc) {
+				document.getElementById("location-details").innerHTML = "<p>"+loc+"</p> <p>lat: "+allData[i]["geo_latitude"]+"</p><p> long: "+allData[i]["geo_longitude"]+"</p>";
+				document.getElementById("count-details").innerHTML = allData[i]["count"];
+				var summaries = document.getElementById("reports-details");
+				summaries.innerHTML = "";
+				var reportsLength = allData[i]["reports"].length;
+				for (var j = 0; j < reportsLength; j++) {
+					var newRow = document.createElement("tr");
+					var dateCell = document.createElement("td");              // Create a <li> node
+					dateCell.innerHTML = allData[i]["reports"][j]["date"];
+					newRow.appendChild(dateCell);
+
+					var shapeCell = document.createElement("td");              // Create a <li> node
+					shapeCell.innerHTML = allData[i]["reports"][j]["shape"];
+					newRow.appendChild(shapeCell);
+
+					var summaryCell = document.createElement("td");              // Create a <li> node
+					summaryCell.innerHTML = allData[i]["reports"][j]["summary"];
+					newRow.appendChild(summaryCell);
+
+					summaries.appendChild(newRow);
+				}
+				return;
+			}
+		}
+	}
+
+function clearDetails(justHovered) {
+	if (clickedID != "") {
+		fillDetails(clickedID);
+	} else {
+		document.getElementById("location-details").innerHTML = '';
+		document.getElementById("count-details").innerHTML = '';
+		document.getElementById("reports-details").innerHTML = '';
+	}
+}
+
+    $(document).on('click', function(e) {
+        if (e.target.id != clickedID) {
+        	document.getElementById(clickedID).style.fill = "red";
+			clickedID = "";
+			clearDetails();
+        }
+    })
+
+	function redraw(year) {
+		circles.selectAll("circle")
+		.transition()
+			  .duration(1000).ease("linear")
+			  .attr("r", function(d, i) {
+			  							//d["count"] = 0;
+			  							var counter = 0;
+			  							for (var j = 0; j < d["reports"].length; j++) {
+			  								var timestamp = new Date(d["reports"][j]["year"], d["reports"][j]["month"] - 1, d["reports"][j]["day"] - 1).getTime();
+			  								timestamp = (timestamp);
+			  								if(timestamp <= year) {
+			  									counter = counter+1;
+			  								}
+			  							}
+			  							if (counter > 0) {
+			  								d["count"] = counter;
+			  								return (1+ (bubbleScale*counter));
+			  							}
+			  							else {
+
+			  								return 0;
+			  							}
+									  }  )
+			.attr("fill", "red")
+		  labels.selectAll("text")
+			  .text(function(d) { return Math.round(d[year]); });
+		}
+	});
+
+
+
+	</script>
+	<div id="side-col">
+
+	  <div id="detail-box">
+	  	<table id="detail-table">
+	  		<tr>
+	  			<td><h4>Location</h4></td>
+	  			<td id="location-details"></td>
+	  		</tr>
+	  		<tr>
+	  			<td><h4>Number of sightings</h4></td>
+	  			<td id="count-details"></td>
+	  		</tr>
+	  	</table>
+	  	<h4>Reports</h4>
+	  	<div class="table-box">
+		  	<table id="reports-details"></table>
+	  	</div>
+
+	  </div>
+	  <div id="shape-chart-div">
+	  		<h4>UFO Shapes Seen</h4>
+		  <svg id="shape-chart" style="padding-left: 15px;"></svg>
+		  </div>
+	</div>
+
+  </section>
+
+</div>
+
+
+
+</body>
+</html>
